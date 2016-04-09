@@ -8,6 +8,7 @@ http://amzn.to/1LGWsLG
 """
 
 from __future__ import print_function
+import logging
 
 def lambda_handler(event, context):
     """ Route the incoming request based on type (LaunchRequest, IntentRequest,
@@ -65,7 +66,9 @@ def on_intent(intent_request, session):
     intent_name = intent_request['intent']['name']
 
     # Dispatch to your skill's intent handlers
-    if intent_name == "MyColorIsIntent":
+    if intent_name == "AddProductIntent":
+        return add_product(intent, session)
+    elif intent_name == "MyColorIsIntent":
         return set_color_in_session(intent, session)
     elif intent_name == "WhatsMyColorIntent":
         return get_color_from_session(intent, session)
@@ -144,6 +147,33 @@ def set_color_in_session(intent, session):
                         "my favorite color is red."
     return build_response(session_attributes, build_speechlet_response(
         card_title, speech_output, reprompt_text, should_end_session))
+
+
+def add_product(intent, session):
+    session_attributes = {}
+    reprompt_text = None
+    logging.debug("Add product call")
+    if 'Product' in intent['slots'] and intent['slots']['Product']['value'] is not None:
+        product_name = intent['slots']['Product']['value']
+        print("Receive product: " + product_name)
+        reprompt_text = "I've just added " + product_name + "to your shop list"
+        speech_output = "Sure! " + product_name + " aded"
+    else:
+        print("Unspecified product name")
+        speech_output = "I'm not sure what product I should add to your shop list. " \
+                        "Please try again."
+        reprompt_text = "I'm not sure what product you mean. " \
+                        "You can tell me a product you would like to add by saying, " \
+                        "Add cheese to the shop list."
+
+    should_end_session = True
+    
+    # Setting reprompt_text to None signifies that we do not want to reprompt
+    # the user. If the user does not respond or says something that is not
+    # understood, the session will end.
+    return build_response(session_attributes, build_speechlet_response(
+        intent['name'], speech_output, reprompt_text, should_end_session))
+
 
 
 def create_favorite_color_attributes(favorite_color):
