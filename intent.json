@@ -1,19 +1,17 @@
 {
   "intents": [
     {
-      "intent": "MyColorIsIntent",
+      "intent": "AMAZON.HelpIntent"
+    },
+    {
+      "intent": "AddProductIntent",
       "slots": [
         {
-          "name": "Color",
-          "type": "LIST_OF_COLORS"
+          "name": "Product",
+          "type": "AMAZON.LITERAL"
         }
-      ]
-    },
-    {
-      "intent": "WhatsMyColorIntent"
-    },
-    {
-      "intent": "AMAZON.HelpIntent"
+       ]
     }
+
   ]
 }

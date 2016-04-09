@@ -1,17 +1,8 @@
-WhatsMyColorIntent what's my favorite color
-WhatsMyColorIntent what is my favorite color
-WhatsMyColorIntent what's my color
-WhatsMyColorIntent what is my color
-WhatsMyColorIntent my color
-WhatsMyColorIntent my favorite color
-WhatsMyColorIntent get my color
-WhatsMyColorIntent get my favorite color
-WhatsMyColorIntent give me my favorite color
-WhatsMyColorIntent give me my color
-WhatsMyColorIntent what my color is
-WhatsMyColorIntent what my favorite color is
-WhatsMyColorIntent yes
-WhatsMyColorIntent yup
-WhatsMyColorIntent sure
-WhatsMyColorIntent yes please
-MyColorIsIntent my favorite color is {Color}
+AddProductIntent put {toothpaste | Product}
+AddProductIntent put {blue cheese  | Product}
+AddProductIntent add {blue cheese | Product}
+AddProductIntent add {milk | Product}
+AddProductIntent buy {red wine | Product}
+AddProductIntent buy {milk | Product}
+AddProductIntent {toilet paper | Product}
+AddProductIntent {milk | Product}
